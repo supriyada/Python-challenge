@@ -11,6 +11,11 @@ profit_loss_list = []
 
 budget = {}
 
+total_month = 0
+net_total = 0
+greatest_profit = 0
+greatest_loss = 0
+
 #Open the file budget_data
 with open(budget_data_path) as input_data:
 
@@ -21,10 +26,7 @@ with open(budget_data_path) as input_data:
     csv_budget_header = next(csv_budget_read)
     print(f"CSV Header: {csv_budget_header}")
 
-    total_month = 0
-    net_total = 0
-    greatest_profit = 0
-    greatest_loss = 0
+    
     # Read each row of data after the header
     for budget_row in csv_budget_read:
         
@@ -53,8 +55,25 @@ with open(budget_data_path) as input_data:
     print(f'Financial Analysis')
     print(f'-'*30)
     print("Total Months: " + str(total_month))
-    print("Total: " +str(net_total))
-    print("Average Change: "+str(Change_profit_loss))
+    print("Total: $" +str(net_total))
+    print("Average Change: $"+str(Change_profit_loss))
     print(f'Greatest Increase in Profits: {profit_month} (${str(greatest_profit)})')
     print(f'Greatest Decrease in Profits: {loss_month} (${str(greatest_loss)})')
+
+output_path = os.path.join( "Analysis", "Results_from_Analysis.txt")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w', newline='') as csv_budget_write:
+
+    # Initialize csv.writer
+    csvwriter = csv.writer(csv_budget_write)
+
+    csvwriter.writerow(['Financial Analysis'])
+    csvwriter.writerow(['-------------------'])
+    csvwriter.writerow(["Total Months: " + str(total_month)])
+    csvwriter.writerow(["Total: $" +str(net_total)])
+    csvwriter.writerow(["Average Change: $"+str(Change_profit_loss)])
+    csvwriter.writerow(['Greatest Increase in Profits: ' + profit_month +' ($' + str(greatest_profit) + ')'])
+    csvwriter.writerow(['Greatest Decrease in Profits: ' + loss_month + ' ($' + str(greatest_loss) + ')'])
+    
     
