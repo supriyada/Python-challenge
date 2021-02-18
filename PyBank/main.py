@@ -26,7 +26,7 @@ with open(budget_data_path) as input_data:
     # CSV reader specifies delimiter and variable that holds contents
     csv_budget_read = csv.reader(input_data, delimiter=',')
 
-    # Read the header row first
+    # Stores the header row
     csv_budget_header = next(csv_budget_read)
     
     # Read each row of data after the header

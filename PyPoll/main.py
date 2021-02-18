@@ -40,7 +40,7 @@ with open(election_data_path) as input_data:
     # CSV reader specifies delimiter and variable that holds contents
     csv_election_read = csv.reader(input_data, delimiter=',')
 
-    # Read the header row first
+    # Stores the header row
     csv_election_header = next(csv_election_read)
 
     # Read each row of data after the header
@@ -54,7 +54,7 @@ with open(election_data_path) as input_data:
     #Calling function to calculate %of vote received by each candidate and to lookup for winning candidate       
     winning_candidate =  calc_percent_vote_winner(vote_count)  
    
-    #Print the results to the terminal
+    #Print the Election data summary to the terminal
     print("-"*30)
     print(f'Election Results')
     print("*"*16 + '\n')
