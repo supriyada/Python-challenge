@@ -24,6 +24,7 @@ with open(budget_data_path) as input_data:
     # Stores the header row
     csv_budget_header = next(csv_budget_read)
 
+    #Store the profit/loss amount of the first row after header
     csv_budget_first_row = next(csv_budget_read)
     profit_loss = csv_budget_first_row[1]
     total_month += 1
@@ -65,3 +66,20 @@ with open(budget_data_path) as input_data:
     print(f'Greatest Increase in Profits: {greatest_profit_month} (${str(greatest_profit)})')
     print(f'Greatest Decrease in Profits: {greatest_loss_month} (${str(greatest_loss)})')
    
+#Path to the data output file
+output_path = os.path.join( "Analysis", "Results_from_Analysis.txt")
+
+# Open the file using "write" mode.
+with open(output_path, 'w', newline='') as csv_budget_write:
+
+    # Initialize csv.writer
+    csvwriter = csv.writer(csv_budget_write)
+
+    #Print Finanacial Analysis summary output to the File    
+    csvwriter.writerow(['Financial Analysis'])
+    csvwriter.writerow(['-------------------'])
+    csvwriter.writerow(["Total Months: " + str(total_month)])
+    csvwriter.writerow(["Total: $" +str(net_total)])
+    csvwriter.writerow(["Average Change: $"+str(monthly_Change_average)])
+    csvwriter.writerow(['Greatest Increase in Profits: ' + greatest_profit_month +' ($' + str(greatest_profit) + ')'])
+    csvwriter.writerow(['Greatest Decrease in Profits: ' + greatest_loss_month + ' ($' + str(greatest_loss) + ')'])
