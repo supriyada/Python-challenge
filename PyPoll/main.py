@@ -9,7 +9,7 @@ vote_percent = []
 total_votes = 0
 percent_calc = 0.00
 
-
+#Calling function to create 2 lists: candidate list and their corresponding voting count
 def create_candidate_list(election_row):
     if election_row[2] not in candidates_list:
             candidates_list.append(election_row[2])
@@ -20,6 +20,7 @@ def create_candidate_list(election_row):
             vote_count[position] = int(vote_count[position]) + 1
     return
 
+#Calling function to calculate %of vote received by each candidate and to lookup for winning candidate
 def calc_percent_vote_winner(vote_count):
     winner = 0
     for vote in range(len(vote_count)):
@@ -65,3 +66,22 @@ with open(election_data_path) as input_data:
     print("The Winner is: " + winning_candidate.title())
     print("-"*30)
 
+#Path to the data output file
+output_path = os.path.join( "Analysis", "Results_from_Analysis.txt")
+
+# Open the file in "write" mode.
+with open(output_path, 'w', newline='') as csv_poll_write:
+
+    # Initialize csv.writer
+    csvwriter = csv.writer(csv_poll_write)
+
+    #Write Poll data Analysis summary output to the File    
+    csvwriter.writerow(['Election Results'])
+    csvwriter.writerow(["*"*16])
+    csvwriter.writerow(["Total Votes: "+str(total_votes)])
+    csvwriter.writerow(["-"*30])
+    for vote in range(len(vote_count)):
+        csvwriter.writerow([candidates_list[vote] + ": " + str(vote_percent[vote]) + "%  (" +str(vote_count[vote]) + ")"])
+    csvwriter.writerow(["-"*30])
+    csvwriter.writerow(["The Winner is: " + winning_candidate.title()])
+    csvwriter.writerow(["-"*30])
