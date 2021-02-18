@@ -43,9 +43,9 @@ with open(budget_data_path) as input_data:
         profit_loss_list.append(budget_row[1])      
 
     #Calculate the changes in "Profit/Losses" over the entire period
-    x=1
-    for x in range(1,len(profit_loss_list)):
-        monthly_diff= (int(profit_loss_list[x])) - (int(profit_loss_list[x-1]))
+    i=1
+    for i in range(1,len(profit_loss_list)):
+        monthly_diff= (int(profit_loss_list[i])) - (int(profit_loss_list[i-1]))
         monthly_Change_total = monthly_Change_total + monthly_diff
 
         #Third list with difference between months is created
