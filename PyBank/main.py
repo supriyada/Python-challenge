@@ -64,7 +64,7 @@ with open(budget_data_path) as input_data:
     print("Total: $" +str(net_total))
     print("Average Change: $"+str(monthly_Change_average))
     print(f'Greatest Increase in Profits: {greatest_profit_month} (${str(greatest_profit)})')
-    print(f'Greatest Decrease in Profits: {greatest_loss_month} (${str(greatest_loss)})')
+    print(f'Greatest Decrease in Losses: {greatest_loss_month} (${str(greatest_loss)})')
    
 #Path to the data output file
 output_path = os.path.join( "Analysis", "Results_from_Analysis.txt")
@@ -82,4 +82,4 @@ with open(output_path, 'w', newline='') as csv_budget_write:
     csvwriter.writerow(["Total: $" +str(net_total)])
     csvwriter.writerow(["Average Change: $"+str(monthly_Change_average)])
     csvwriter.writerow(['Greatest Increase in Profits: ' + greatest_profit_month +' ($' + str(greatest_profit) + ')'])
-    csvwriter.writerow(['Greatest Decrease in Profits: ' + greatest_loss_month + ' ($' + str(greatest_loss) + ')'])
+    csvwriter.writerow(['Greatest Decrease in Losses: ' + greatest_loss_month + ' ($' + str(greatest_loss) + ')'])
